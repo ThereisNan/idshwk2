@@ -1,3 +1,3 @@
-Log tcp $EXTERNAL any -> $HOME_NET 3399 (flow:to_sever; content:"login"; flowbits:set,isloginorinitial;)
+Log tcp any any -> any 3399 (flow:to_sever; content:"login"; flowbits:set,isloginorinitial;)
 Log tcp $EXTERNAL any -> $HOME_NET 3399 (flow:to_sever; content:"Initial"; flowbits:set,isloginorinitial;)
 alert tcp $EXTERNAL any -> $HOME_NET 3399 (msg:"bot founded"; flow:to_sever; flowbits:isset,isloginorinitial; pcre:"^(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}$\72/^([0-9]|[1-9]\d|[1-9]\d{2}|[1-9]\d{3}|[1-5]\d{4}|6[0-4]\d{3}|65[0-4]\d{2}|655[0-2]\d|6553[0-5])$/"; sid:1000001;)
